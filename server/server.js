@@ -24,9 +24,7 @@ io.on('connection', (socket) => {
   });
 });
 
-console.log(process.env.TEST);
-let testvar = 2;
-console.log(process.env.TEST);
+
 
 
 
