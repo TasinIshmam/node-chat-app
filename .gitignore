@@ -169,5 +169,5 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
-
+extra-files-created-by-git-in-server/
 # End of https://www.gitignore.io/api/node,webstorm

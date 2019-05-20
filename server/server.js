@@ -10,26 +10,45 @@ var server = http.createServer(app);
 var io = socketIO(server);
 
 app.use(express.static(publicPath));
-console.log("added shit");
 
 io.on('connection', (socket) => {
   console.log('New user connected');
 
+  socket.emit('newMessage', {
+    from: 'Admin',
+    text: 'Hey, welcome to the chat app',
+    createdAt: new Date().getTime()
+  });
 
+  socket.broadcast.emit('newMessage', {
+    from: 'Admin',
+    text: 'New user joined the application',
+    createdAt: new Date().getTime()
 
+  });
+
+  socket.on('createMessage', (message) => {
+
+    console.log('createMessage', message);
+
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+
+    });
+
+  });
 
   socket.on('disconnect', () => {
     console.log('User was disconnected');
 
-console.log("added shit");
-
-
-
   });
+
+
 });
 
 
-console.log("intentionally making changes to fuck up history")
 
 server.listen(port, () => {
   console.log(`Server is up on ${port}`);
