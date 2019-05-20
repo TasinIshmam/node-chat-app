@@ -10,6 +10,7 @@ var server = http.createServer(app);
 var io = socketIO(server);
 
 app.use(express.static(publicPath));
+console.log("added shit");
 
 io.on('connection', (socket) => {
   console.log('New user connected');
@@ -19,6 +20,8 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('User was disconnected');
+
+console.log("added shit");
 
 
 
