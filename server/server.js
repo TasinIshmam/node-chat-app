@@ -16,6 +16,7 @@ io.on('connection', (socket) => {
 
 
 
+
   socket.on('disconnect', () => {
     console.log('User was disconnected');
 
@@ -25,7 +26,7 @@ io.on('connection', (socket) => {
 });
 
 
-
+console.log("intentionally making changes to fuck up history")
 
 server.listen(port, () => {
   console.log(`Server is up on ${port}`);
