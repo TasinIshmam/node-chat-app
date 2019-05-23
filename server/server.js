@@ -3,6 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
+const {isRealString} = require('./utils/validation');
 const {generateMessage, generateLocationMessage} = require('./utils/message');
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
@@ -24,6 +25,16 @@ io.on('connection', (socket) => {
     io.emit('newMessage', generateMessage(message.from, message.text));
     callback('This is from the server.');
   });
+
+
+  socket.on('join', (params, callback) => {
+    if (!isRealString(params.name) || !isRealString(params.room)) {
+      callback('Name and room name are required.');
+    }
+
+    callback();
+  });
+
 
   socket.on('createLocationMessage', (coords) => {
     io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude));
