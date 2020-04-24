@@ -64,13 +64,13 @@ describe('Users', () => {
     expect(user).toBeFalsy();
   });
 
-  it('should return names for node course', () => {
+  it('should return names for node room', () => {
     var userList = users.getUserList('Node Course');
 
     expect(userList).toEqual(['Mike', 'Julie']);
   });
 
-  it('should return names for react course', () => {
+  it('should return names for react room', () => {
     var userList = users.getUserList('React Course');
 
     expect(userList).toEqual(['Jen']);
